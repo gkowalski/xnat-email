@@ -30,8 +30,8 @@ def main():
                     print( json_data['email'])
                     #decoded = json.load(json_data)
                     pp.pprint(  json_data )
-                    #time.sleep(10)
-                    #gen_email(email, fname, lname)
+                    time.sleep(10)
+                    gen_email(email, fname, lname)
         print(f"Valid users found :  {counter}")
 
 
