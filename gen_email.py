@@ -1,8 +1,13 @@
 #!/user/bin/env python
 
 import smtplib
-import xnat, os, json, pprint, time
+
+import os
+import pprint
+import time
+import xnat
 from dotenv import load_dotenv
+
 
 def main():
 
@@ -30,7 +35,7 @@ def main():
                     print( json_data['email'])
                     #decoded = json.load(json_data)
                     pp.pprint(  json_data )
-                    time.sleep(10)
+                    time.sleep(5)
                     gen_email(email, fname, lname)
         print(f"Valid users found :  {counter}")
 
@@ -44,12 +49,11 @@ def gen_email(to_email_address, fname , lname):
     :return:
     """
     sent_from = os.environ['smtp_from']
-    subject = 'XNAT Server scheduled downtime'
+    subject = 'XNAT Server scheduled downtime tomorrow !'
     body = f"""Dear {fname} {lname} , 
-    Please note that the xnat server will be down the entirety of next friday Oct 15th 2021 ( 8:00am - 5:00pm ) 
-    for a major hardware and software upgrade of the system to better serve you.
-    Please contact the Image De-identification Team at {os.environ['smtp_from']} if this is an issue for you and we'll 
-    work out a temporary delivery mechanism if needed for this day.
+    The server upgrade has been completed successfully. 
+    
+    Please contact the Image De-identification Team at {os.environ['smtp_from']} if you have any issues using the new server. 
      
     Your IDSC Team """
     email_text = f"""Subject: {subject}

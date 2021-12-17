@@ -19,7 +19,12 @@ $ git clone git@github.com:gkowalski/xnat-email.git xnat-email
 $ cd xnat-email
 $ python3 -m venv venv
 $ source ./venv/bin/activate
-$ pip install requirements.txt
+$ pip install -r requirements.txt
   Copy env_template to .env and edit to reflect your settings
 ```
-- 
+
+Running 
+- Edit the gen_email.py to reflect the email you want to send out and how frequently to send each email.
+```angular2html
+./gen_email.py
+```
