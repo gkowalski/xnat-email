@@ -1,4 +1,4 @@
-#!/user/bin/env python
+#!/usr/bin/env python
 
 import smtplib
 
@@ -12,7 +12,8 @@ from dotenv import load_dotenv
 def main():
 
     load_dotenv()
-    with  xnat.connect(os.environ['xnat_url'], user=os.environ['xnat_user'], password=os.environ['xnat_password']) as connection:
+    print ( f"connecting with : {os.environ['xnat_url']}, user={os.environ['xnat_user']}, password={os.environ['xnat_password']}")
+    with  xnat.connect(os.environ['xnat_url'], user=os.environ['xnat_user'], password=os.environ['xnat_password'], verify=False) as connection:
 
         users = connection.get_json('/xapi/users')
         print(f"{users}")
@@ -49,11 +50,16 @@ def gen_email(to_email_address, fname , lname):
     :return:
     """
     sent_from = os.environ['smtp_from']
-    subject = 'XNAT Server scheduled downtime tomorrow !'
+    subject = 'Image Deidentificaton Service Center : Scheduled downtime'
     body = f"""Dear {fname} {lname} , 
-    The server upgrade has been completed successfully. 
-    
-    Please contact the Image De-identification Team at {os.environ['smtp_from']} if you have any issues using the new server. 
+     Please be aware of the following scheduled downtime: 
+
+     This Thursday 9/29/2022 from 4:00 to 4:30 pm . 
+
+     We will be performing a update of the xnat server software and the system will be down.
+     Another Email will follow when the system is up. Please plan accordingly. 
+
+     Thanks for your patience. 
      
     Your IDSC Team """
     email_text = f"""Subject: {subject}
